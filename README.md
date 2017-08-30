@@ -14,13 +14,13 @@ First, train a model according to [documentation for seq2seq-attn](https://githu
 
 Then invoke `describe.lua` like so:
 
-```
+```sh
 th describe.lua -model XYZ.t7 -src_dict XYZ.src.dict -targ_dict XYZ.targ.dict -src_file XYZ.tok -output_file XYZ.t7
 ```
 
 `describe.lua` has an additional option specifying the layer to take
 
-```
+```sh
 th describe.lua -model XYZ.t7 -src_dict XYZ.src.dict -targ_dict XYZ.targ.dict -src_file XYZ.tok -output_file XYZ.t7 -enc_layer 1
 ```
 
@@ -54,7 +54,7 @@ which will compares three networks, doing a total of 6 comparisons (networks are
 
 Then choose a predictor -- linear (`linear-predictors`), linear with pca (`pca-predictors`), or single-layer MLP (`nonlinear-predictors`). Invoke the corresponding script like so:
 
-```
+```sh
 th pca-predictors -desc_list description_list.txt -out_file comparison_table.json
 ```
 
@@ -64,3 +64,26 @@ The comparison table will contain the MSE for each dimension for each ordered pa
 
 3\. Visualize the comparison table
 ---------------------------------
+
+Visualization tools reside in the JavaScript file `visualize.js`. Use this in an HTML file to generate visualizations. By default, the visualization loads data by making an XHR request for the wanted JSON file, so you will need to run a local server in order to do this, rather than just view the file with `file://`.
+
+`visualize.js` provides two functions: `render_table` and `render_small_table`. The first renders plots of the dimensionwise MSEs and their geometric means; the second renders a matrix heatmap of differential entropies of the error distributions. Their prototypes are:
+
+```javascript
+render_table("filename.json", "destination-element-id");
+render_small_table("filename.json", "destination-element-id");
+```
+
+A brief example:
+
+```html
+<html>
+  <body>
+    <div id="table-spot"></div>
+    <script src="visualize.js"></script>
+    <script>
+      render_table('comparison_table.json', 'table-spot');
+    </script>
+  </body>
+</html>
+```
