@@ -52,7 +52,7 @@ First, create a text file that contains a list of descriptions for the models yo
 
 which will compares three networks, doing a total of 6 comparisons (networks are not compared with themselves).
 
-Then choose a predictor -- linear, linear with pca, or nonlinear. Invoke the corresponding script like so:
+Then choose a predictor -- linear (`linear-predictors`), linear with pca (`pca-predictors`), or single-layer MLP (`nonlinear-predictors`). Invoke the corresponding script like so:
 
 ```
 th pca-predictors -desc_list description_list.txt -out_file comparison_table.json

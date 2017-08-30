@@ -8,7 +8,8 @@ require 'nn'
 require 'cunn'
 require 'json'
 require 'optim'
-pca = require 'pca'
+pca_module = require 'pca'
+pca = pca_module[1]
 
 -- Normalize a sample to have mean 0
 function normalize_mean(X)
