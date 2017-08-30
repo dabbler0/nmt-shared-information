@@ -14,13 +14,13 @@ First, train a model according to [documentation for seq2seq-attn](https://githu
 
 Then invoke `describe.lua` like so:
 
-```sh
+```shell
 th describe.lua -model XYZ.t7 -src_dict XYZ.src.dict -targ_dict XYZ.targ.dict -src_file XYZ.tok -output_file XYZ.t7
 ```
 
 `describe.lua` has an additional option specifying the layer to take
 
-```sh
+```shell
 th describe.lua -model XYZ.t7 -src_dict XYZ.src.dict -targ_dict XYZ.targ.dict -src_file XYZ.tok -output_file XYZ.t7 -enc_layer 1
 ```
 
@@ -54,7 +54,7 @@ which will compares three networks, doing a total of 6 comparisons (networks are
 
 Then choose a predictor -- linear (`linear-predictors`), linear with pca (`pca-predictors`), or single-layer MLP (`nonlinear-predictors`). Invoke the corresponding script like so:
 
-```sh
+```shell
 th pca-predictors -desc_list description_list.txt -out_file comparison_table.json
 ```
 
